@@ -1,25 +1,23 @@
 package core;
 
-import java.util.ArrayList;
-
 public class RankedAlternative  {
 
     private Alternative alternative;
-    private int criteriaCounted;
+    private double criteriaCounted;
     private int rank;
 
-    public RankedAlternative(  Alternative alternative, int criteriaCounted, int rank) {
+    public RankedAlternative(  Alternative alternative, double criteriaCounted, int rank) {
 
         this.alternative = alternative;
         this.criteriaCounted = criteriaCounted;
         this.rank = rank;
     }
 
-    public int getCriteriaCounted() {
+    public double getCriteriaCounted() {
         return criteriaCounted;
     }
 
-    public void setCriteriaCounted(int criteriaCounted) {
+    public void setCriteriaCounted(double criteriaCounted) {
         this.criteriaCounted = criteriaCounted;
     }
 

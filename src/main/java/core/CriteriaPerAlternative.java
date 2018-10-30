@@ -4,15 +4,15 @@ package core;
 
 public class CriteriaPerAlternative implements Comparable<CriteriaPerAlternative>{
 
-    private int value;
+    private double value;
     private Alternative alternative;
 
-    public CriteriaPerAlternative(int value, Alternative alternative) {
+    public CriteriaPerAlternative(double value, Alternative alternative) {
         this.value = value;
         this.alternative = alternative;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -30,6 +30,16 @@ public class CriteriaPerAlternative implements Comparable<CriteriaPerAlternative
 
     @Override
     public int compareTo(CriteriaPerAlternative o) {
-        return this.value - o.value;
+        int result = 0;
+        if(this.value - o.value > 0){
+            result = 1;
+        }
+        else if(this.value - o.value < 0){
+            result = -1;
+        }
+        else if(this.value - o.value == 0){
+            result = 0;
+        }
+        return result;
     }
 }

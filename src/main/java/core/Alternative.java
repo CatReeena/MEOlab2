@@ -6,9 +6,9 @@ public class Alternative {
 
     private int serialNumber;
     private String name;
-    private ArrayList<Integer> scores;
+    private ArrayList<Double> scores;
 
-    public Alternative(int serialNumber, String name, ArrayList<Integer> scores) {
+    public Alternative(int serialNumber, String name, ArrayList<Double> scores) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.scores = scores;
@@ -22,11 +22,11 @@ public class Alternative {
         this.name = name;
     }
 
-    public ArrayList<Integer> getScores() {
+    public ArrayList<Double> getScores() {
         return scores;
     }
 
-    public void setScores(ArrayList<Integer> scores) {
+    public void setScores(ArrayList<Double> scores) {
         this.scores = scores;
     }
 

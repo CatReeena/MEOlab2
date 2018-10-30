@@ -14,11 +14,11 @@ public class AlternativeController {
 
     @GetMapping("/")
     public RankedAlternativeCase index() {
-        Alternative a1 = new Alternative(1,"alternative1", new ArrayList<>(Arrays.asList(12,3,4,4)));
-        Alternative a2 = new Alternative(2,"alternative2", new ArrayList<>(Arrays.asList(12,2,1,0)));
-        Alternative a3 = new Alternative(3,"alternative3", new ArrayList<>(Arrays.asList(8,1,1,5)));
-        Alternative a4 = new Alternative(4,"alternative4", new ArrayList<>(Arrays.asList(7,7,7,5)));
-        ArrayList<Alternative> alternatives = new ArrayList<>(Arrays.asList(a1,a2,a3,a4));
+        Alternative a1 = new Alternative(1,"alternative1", new ArrayList<Double>(Arrays.asList(12.0,3.0,4.0,4.0)));
+//        Alternative a2 = new Alternative(2,"alternative2", new ArrayList<Double>(Arrays.asList(12,2,1,0)));
+//        Alternative a3 = new Alternative(3,"alternative3", new ArrayList<Double>(Arrays.asList(8,1,1,5)));
+//        Alternative a4 = new Alternative(4,"alternative4", new ArrayList<Double>(Arrays.asList(7,7,7,5)));
+        ArrayList<Alternative> alternatives = new ArrayList<>(Arrays.asList(a1));
         ArrayList<RankedAlternative> rankedAlternatives = AlternativeService.countValdCriteria(alternatives);
         RankedAlternativeCase rankedAlternativeCase = new RankedAlternativeCase(rankedAlternatives, new ArrayList<String>(Arrays.asList("score1","score2","score3","score4")),0);
 
@@ -38,7 +38,7 @@ public class AlternativeController {
                 rankedAlternativeList = AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
                 break;
             case 2:
-                rankedAlternativeList = AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
+                rankedAlternativeList = AlternativeService.countMaxMaxCriteria(alternativeCase.getAlternatives());
                 break;
             case 3:
                 rankedAlternativeList = AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
