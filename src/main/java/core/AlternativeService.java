@@ -1,14 +1,12 @@
 package core;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class AlternativeService {
 
-    //ranking Alternatives by Vald criteria
+
     public static ArrayList<RankedAlternative> countValdCriteria(final ArrayList<Alternative> alternatives){
         ArrayList<CriteriaPerAlternative> criteriaList = new ArrayList<>();
         double result;
@@ -27,9 +25,9 @@ public class AlternativeService {
         double result;
         for (Alternative alternative : alternatives) {
             result = Collections.max(alternative.getScores());
-            criteriaList.add(new CriteriaPerAlternative(result, alternative));      //add resulting score and Alternative it belongs to to an Array
+            criteriaList.add(new CriteriaPerAlternative(result, alternative));
         }
-        criteriaList.sort(Collections.reverseOrder());                     //sort alternatives by  score to get rank
+        criteriaList.sort(Collections.reverseOrder());
 
         return setRank(criteriaList);
     }
@@ -69,9 +67,9 @@ public class AlternativeService {
         double result;
         for (Alternative alternative : newAlternatives) {
             result = Collections.max(alternative.getScores());
-            criteriaList.add(new CriteriaPerAlternative(result, alternative));      //add resulting score and Alternative it belongs to to an Array
+            criteriaList.add(new CriteriaPerAlternative(result, alternative));
         }
-        Collections.sort(criteriaList);                    //sort alternatives by score to get rank
+        Collections.sort(criteriaList);
 
         return setRank(criteriaList);
     }
@@ -82,14 +80,14 @@ public class AlternativeService {
         for (Alternative alternative : alternatives){
             result = alternative.getScores().stream().mapToDouble(Double::doubleValue).sum()
                     /alternative.getScores().size();
-            criteriaList.add(new CriteriaPerAlternative(result, alternative));      //add resulting score and Alternative it belongs to to an Array
+            criteriaList.add(new CriteriaPerAlternative(result, alternative));
         }
-        criteriaList.sort(Collections.reverseOrder());                    //sort alternatives by score to get rank
+        criteriaList.sort(Collections.reverseOrder());
 
         return setRank(criteriaList);
     }
 
-    private static ArrayList<RankedAlternative> setRank(ArrayList<CriteriaPerAlternative> criteriaList) {
+    private static ArrayList<RankedAlternative> setRank(final ArrayList<CriteriaPerAlternative> criteriaList) {
 
         ArrayList<RankedAlternative> rankedAlternatives = new ArrayList<>();
         for (int i = 0; i <criteriaList.size() ; i++) {
@@ -100,7 +98,4 @@ public class AlternativeService {
 
         return rankedAlternatives;
     }
-
-
-
 }

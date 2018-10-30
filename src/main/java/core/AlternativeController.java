@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 
 @RestController
@@ -25,12 +26,8 @@ public class AlternativeController {
         ArrayList<RankedAlternative> rankedAlternatives4 = AlternativeService.countRegretCriteria(alternatives);
         ArrayList<RankedAlternative> rankedAlternative5 = AlternativeService.countLaplasCriteria(alternatives);
         RankedAlternativeCase rankedAlternativeCase = new RankedAlternativeCase(rankedAlternatives1, new ArrayList<String>(Arrays.asList("score1","score2","score3","score4")),0);
-
+        Collections.sort(rankedAlternatives1);
         return rankedAlternativeCase;
-
-//        return "<p>Available Commands:</p>" +
-//                "<p>findAllBooks <a href=\"/test/\">here</a></p>";
-
     }
 
     @GetMapping("/rank")
@@ -57,6 +54,7 @@ public class AlternativeController {
                     rankedAlternativeList =  AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
                     break;
         }
+        Collections.sort(rankedAlternativeList);
         return new RankedAlternativeCase(rankedAlternativeList,
                 alternativeCase.getConditions(),
                 alternativeCase.getCriteriaType());

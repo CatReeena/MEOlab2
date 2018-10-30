@@ -1,12 +1,12 @@
 package core;
 
-public class RankedAlternative  {
+public class RankedAlternative implements Comparable<RankedAlternative>{
 
     private Alternative alternative;
     private double criteriaCounted;
     private int rank;
 
-    public RankedAlternative(  Alternative alternative, double criteriaCounted, int rank) {
+    public RankedAlternative(Alternative alternative, double criteriaCounted, int rank) {
 
         this.alternative = alternative;
         this.criteriaCounted = criteriaCounted;
@@ -35,5 +35,10 @@ public class RankedAlternative  {
 
     public void setAlternative(Alternative alternative) {
         this.alternative = alternative;
+    }
+
+    @Override
+    public int compareTo(RankedAlternative o) {
+        return this.alternative.getSerialNumber() - o.alternative.getSerialNumber();
     }
 }

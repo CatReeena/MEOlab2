@@ -2,7 +2,7 @@ package core;
 
 import java.util.ArrayList;
 
-public class Alternative {
+public class Alternative implements Comparable<Alternative>{
 
     private int serialNumber;
     private String name;
@@ -36,5 +36,10 @@ public class Alternative {
 
     public void setSerialNumber(int serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    @Override
+    public int compareTo(Alternative o) {
+        return this.serialNumber - o.serialNumber;
     }
 }
