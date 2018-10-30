@@ -14,13 +14,17 @@ public class AlternativeController {
 
     @GetMapping("/")
     public RankedAlternativeCase index() {
-        Alternative a1 = new Alternative(1,"alternative1", new ArrayList<Double>(Arrays.asList(12.0,3.0,4.0,4.0)));
-//        Alternative a2 = new Alternative(2,"alternative2", new ArrayList<Double>(Arrays.asList(12,2,1,0)));
-//        Alternative a3 = new Alternative(3,"alternative3", new ArrayList<Double>(Arrays.asList(8,1,1,5)));
-//        Alternative a4 = new Alternative(4,"alternative4", new ArrayList<Double>(Arrays.asList(7,7,7,5)));
-        ArrayList<Alternative> alternatives = new ArrayList<>(Arrays.asList(a1));
-        ArrayList<RankedAlternative> rankedAlternatives = AlternativeService.countValdCriteria(alternatives);
-        RankedAlternativeCase rankedAlternativeCase = new RankedAlternativeCase(rankedAlternatives, new ArrayList<String>(Arrays.asList("score1","score2","score3","score4")),0);
+        Alternative a1 = new Alternative(1,"alternative1", new ArrayList<Double>(Arrays.asList(12.0, 3.0, 4.0)));
+        Alternative a2 = new Alternative(2,"alternative2", new ArrayList<Double>(Arrays.asList(9.0, 2.0, 0.0)));
+        Alternative a3 = new Alternative(3,"alternative3", new ArrayList<Double>(Arrays.asList(6.0, 8.0, 7.0)));
+        Alternative a4 = new Alternative(4,"alternative4", new ArrayList<Double>(Arrays.asList(6.0, 6.0, 4.0)));
+        ArrayList<Alternative> alternatives = new ArrayList<>(Arrays.asList(a1,a2,a3,a4));
+        ArrayList<RankedAlternative> rankedAlternatives1 = AlternativeService.countValdCriteria(alternatives);
+        ArrayList<RankedAlternative> rankedAlternatives2 = AlternativeService.countMaxMaxCriteria(alternatives);
+        ArrayList<RankedAlternative> rankedAlternatives3 = AlternativeService.countGurwitzCriteria(alternatives);
+        ArrayList<RankedAlternative> rankedAlternatives4 = AlternativeService.countRegretCriteria(alternatives);
+        ArrayList<RankedAlternative> rankedAlternative5 = AlternativeService.countLaplasCriteria(alternatives);
+        RankedAlternativeCase rankedAlternativeCase = new RankedAlternativeCase(rankedAlternatives1, new ArrayList<String>(Arrays.asList("score1","score2","score3","score4")),0);
 
         return rankedAlternativeCase;
 
@@ -41,13 +45,13 @@ public class AlternativeController {
                 rankedAlternativeList = AlternativeService.countMaxMaxCriteria(alternativeCase.getAlternatives());
                 break;
             case 3:
-                rankedAlternativeList = AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
+                rankedAlternativeList = AlternativeService.countGurwitzCriteria(alternativeCase.getAlternatives());
                 break;
             case 4:
-                rankedAlternativeList = AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
+                rankedAlternativeList = AlternativeService.countRegretCriteria(alternativeCase.getAlternatives());
                 break;
             case 5:
-                rankedAlternativeList = AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
+                rankedAlternativeList = AlternativeService.countLaplasCriteria(alternativeCase.getAlternatives());
                 break;
                 default:
                     rankedAlternativeList =  AlternativeService.countValdCriteria(alternativeCase.getAlternatives());
