@@ -1,5 +1,6 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,9 @@ public class AlternativeCase {
     private ArrayList<Alternative> alternatives;
     private ArrayList<String> conditions;
     private int criteriaType;
+
+
+    public AlternativeCase(){}
 
     public AlternativeCase(ArrayList<Alternative> alternatives, ArrayList<String> conditions, int criteriaType) {
         this.alternatives = alternatives;

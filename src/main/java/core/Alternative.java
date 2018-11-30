@@ -1,12 +1,15 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Alternative implements Comparable<Alternative>{
+public class Alternative implements Comparable<Alternative> {
 
     private int serialNumber;
     private String name;
     private ArrayList<Double> scores;
+
+    public Alternative(){}
 
     public Alternative(int serialNumber, String name, ArrayList<Double> scores) {
         this.serialNumber = serialNumber;
