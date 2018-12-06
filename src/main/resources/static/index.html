@@ -27,18 +27,18 @@
 </div>
 
 <form>
-    <input type="radio" name="foo" value="1" checked="checked" />
-    <input type="radio" name="foo" value="0" />
-    <input name="bar" value="xxx" />
+    <input type="radio" name="serialNumber" value="1" checked="checked" />
+    <input type="radio" name="name" value="0" />
+    <input name="scores" value="xxx" />
     <select name="this">
         <option value="hi" selected="selected">Hi</option>
         <option value="ho">Ho</option>
     </select>
 </form>
 <form>
-    <input type="radio" name="foo" value="1" checked="checked" />
-    <input type="radio" name="foo" value="0" />
-    <input name="bar" value="яяя" />
+    <input type="radio" name="serialNumber" value="1" checked="checked" />
+    <input type="radio" name="name" value="0" />
+    <input name="scores" value="яяя" />
     <select name="this">
         <option value="hi" selected="selected">Hi</option>
         <option value="ho">Ho</option>
@@ -136,23 +136,23 @@
 
         $("#test").click(function(){
 
-            alert("Message: "+JSON.stringify(convert($('form'))));
-            // jQuery.each($('form'), function(){
-            //     alert("Message: "+JSON.stringify(convert(this)));
-            // });
+          //  alert("Message: "+JSON.stringify(convert($('form'))));
+            var jsonComplete = "{\"alternatives\":[";
+            jQuery.each($('form'), function(){
+                jsonComplete += JSON.stringify(convert(this)).concat(",");
+                //alert("Message: "+JSON.stringify(convert(this)));
+            });
+            jsonComplete = jsonComplete.slice(0, -1);
+            alert(JSON.stringify(jsonComplete));
         });
         function convert(form){
 
             var array = jQuery(form).serializeArray();
-            var json = [];
+            var json = {};
             jQuery.each(array, function(){
                 var n = JSON.stringify(this);
-                var jsonLine = {};
-                jsonLine[this.name] = this.value || '';
-                json.push(jsonLine);
+                json[this.name] = this.value || '';
             });
-            alert("Json: "+  JSON.stringify((form).serializeArray()));
-            // alert("Json: "+  JSON.stringify(json));
             return json;
         }
 

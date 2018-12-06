@@ -1,10 +1,12 @@
 package core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Alternative implements Comparable<Alternative> {
-
+    @JsonProperty()
     private int serialNumber;
     private String name;
     private ArrayList<Double> scores;
