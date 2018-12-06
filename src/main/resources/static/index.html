@@ -1,206 +1,49 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Demo</title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width"/>
-    <base href="/"/>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <title>Lab2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="helper.js" charset="utf-8"></script>
 </head>
+
 <body>
-<h1>Demo</h1>
-<div>
-    <button id="rank" class="btn btn-primary">Logout</button>
-</div>
-<div>
-    <button id="test" class="btn btn-primary">Logout</button>
-</div>
-<div class="container authenticated">
-    Logged in as: <span id="rankCounted"></span>
-</div>
-<div class="container authenticated">
-    Logged in as: <span id="result"></span>
-</div>
-
-<form>
-    <input type="radio" name="serialNumber" value="1" checked="checked" />
-    <input type="radio" name="name" value="0" />
-    <input name="scores" value="xxx" />
-    <select name="this">
-        <option value="hi" selected="selected">Hi</option>
-        <option value="ho">Ho</option>
+<div class="container-fluid" id="wrapper">
+    <h1 id="header">Оценка экспертов</h1>
+    <table class="table table-bordered col-md-10" id="table">
+        <tbody>
+        <tr>
+            <td>№</td>
+            <td>Название Альтернативы</td>
+            <td><input type="text" class="form-control condName" placeholder="Условие"></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" class="form-control altName" placeholder="Название"></td>
+            <td><input type="text" class="form-control score" placeholder="Оценка"></td>
+        </tr>
+        </tbody>
+    </table>
+    <select id="algo" class="col-md-3">
+        <option value="1">Критерий Вальда</option>
+        <option value="2">Критерий Максимакса</option>
+        <option value="3">Критерий Гурвица</option>
+        <option value="4">Критерий Сэвиджа</option>
+        <option value="5">Критерий Лапласа</option>
     </select>
-</form>
-<form>
-    <input type="radio" name="serialNumber" value="1" checked="checked" />
-    <input type="radio" name="name" value="0" />
-    <input name="scores" value="яяя" />
-    <select name="this">
-        <option value="hi" selected="selected">Hi</option>
-        <option value="ho">Ho</option>
-    </select>
-</form>
-
-
-<!--<div class="container">-->
-<!--<div class="row">-->
-<!--<div class="control-group" id="fields">-->
-<!--<label class="control-label" for="field1">Nice Multiple Form Fields</label>-->
-<!--<div class="controls">-->
-<!--<form role="form" autocomplete="off">-->
-<!--<div class="entry input-group col-xs-3">-->
-<!--<input class="form-control" name="fields[]" type="text" placeholder="Type something" />-->
-<!--<span class="input-group-btn">-->
-<!--<button class="btn btn-success btn-add" type="button">-->
-<!--<span class="glyphicon glyphicon-plus"></span>-->
-<!--</button>-->
-<!--</span>-->
-<!--</div>-->
-<!--</form>-->
-<!--<br>-->
-<!--<small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="container">-->
-<!--<div class="row clearfix">-->
-<!--<div class="col-md-12 column">-->
-<!--<table class="table table-bordered table-hover" id="tab_logic">-->
-<!--<thead>-->
-<!--<tr >-->
-<!--<th class="text-center">-->
-<!--#-->
-<!--</th>-->
-<!--<th class="text-center">-->
-<!--Name-->
-<!--</th>-->
-<!--<th class="text-center">-->
-<!--Mail-->
-<!--</th>-->
-<!--<th class="text-center">-->
-<!--Mobile-->
-<!--</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tbody>-->
-<!--<tr id='addr0'>-->
-<!--<td>-->
-<!--1-->
-<!--</td>-->
-<!--<td>-->
-<!--<input type="text" name='name0'  placeholder='Name' class="form-control"/>-->
-<!--</td>-->
-<!--<td>-->
-<!--<input type="text" name='mail0' placeholder='Mail' class="form-control"/>-->
-<!--</td>-->
-<!--<td>-->
-<!--<input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>-->
-<!--</td>-->
-<!--</tr>-->
-<!--<tr id='addr1'></tr>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--</div>-->
-<!--</div>-->
-<!--<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>-->
-<!--</div>-->
-
-
+    <button id="newTd">Добавить колонку</button>
+    <button id="newTr">Добавить ряд</button>
+    <button id="submit">Submit</button>
+    <hr style="display: none;">
+    <table class="table table-bordered col-md-10" id="out">
+        <tbody>
+        </tbody>
+    </table>
+</div>
 </body>
-<script>
-    $(document).ready(function(){
-        $("#rank").click(function(){
-            $.ajax({
-                contentType: 'application/json ; charset=utf-8',
-                data: JSON.stringify({"alternatives":[{"serialNumber":1,"name":"alternative1","scores":[12.0,3.0,4.0]},{"serialNumber":2,"name":"alternative2","scores":[9.0,2.0,0.0]},{"serialNumber":3,"name":"alternative3","scores":[6.0,8.0,7.0]},{"serialNumber":4,"name":"alternative4","scores":[6.0,6.0,4.0]}],"conditions":["c1","c2","c3","c4"],"criteriaType":1}),
 
-                dataType: 'json',
-                success: function(data){
-                    // $("#rankCounted").html(data.getRank());
-                    $("#rankCounted").html(data.criteriaType);
-                },
-                error: function(){
-                    app.log("Device control failed");
-                },
-                processData: false,
-                type: 'POST',
-                url: '/rank'
-            });
-        });
-
-        $("#test").click(function(){
-
-          //  alert("Message: "+JSON.stringify(convert($('form'))));
-            var jsonComplete = "{\"alternatives\":[";
-            jQuery.each($('form'), function(){
-                jsonComplete += JSON.stringify(convert(this)).concat(",");
-                //alert("Message: "+JSON.stringify(convert(this)));
-            });
-            jsonComplete = jsonComplete.slice(0, -1);
-            alert(JSON.stringify(jsonComplete));
-        });
-        function convert(form){
-
-            var array = jQuery(form).serializeArray();
-            var json = {};
-            jQuery.each(array, function(){
-                var n = JSON.stringify(this);
-                json[this.name] = this.value || '';
-            });
-            return json;
-        }
-
-
-        // $(function()
-        // {
-        //     $(document).on('click', '.btn-add', function(e)
-        //     {
-        //         e.preventDefault();
-        //
-        //         var controlForm = $('.controls form:first'),
-        //             currentEntry = $(this).parents('.entry:first'),
-        //             newEntry = $(currentEntry.clone()).appendTo(controlForm);
-        //
-        //         newEntry.find('input').val('');
-        //         controlForm.find('.entry:not(:last) .btn-add')
-        //             .removeClass('btn-add').addClass('btn-remove')
-        //             .removeClass('btn-success').addClass('btn-danger')
-        //             .html('<span class="glyphicon glyphicon-minus"></span>');
-        //     }).on('click', '.btn-remove', function(e)
-        //     {
-        //         $(this).parents('.entry:first').remove();
-        //
-        //         e.preventDefault();
-        //         return false;
-        //     });
-        // });
-
-        // $(document).ready(function(){
-        //     var i=1;
-        //     $("#add_row").click(function(){
-        //         $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='name"+i+"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail"+i+"' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile"+i+"' type='text' placeholder='Mobile'  class='form-control input-md'></td>");
-        //
-        //         $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-        //         i++;
-        //     });
-        //     $("#delete_row").click(function(){
-        //         if(i>1){
-        //             $("#addr"+(i-1)).html('');
-        //             i--;
-        //         }
-        //     });
-        //
-        // });
-
-
-    });
-
-
-</script>
 </html>

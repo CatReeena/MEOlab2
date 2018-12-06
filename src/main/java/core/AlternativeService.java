@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class AlternativeService {
 
     public static ArrayList<RankedAlternative> countRegretCriteria(final ArrayList<Alternative> alternatives){
         List<Integer> maxValues = new ArrayList<>();
-        List<Alternative> newAlternatives = new ArrayList<>(alternatives);
+        List<Alternative> newAlternatives = cloneAlternatives(alternatives);
             for (int i = 0; i <alternatives.get(0).getScores().size() ; i++) {
                 double max = 0;
                 for (Alternative alternative : alternatives) {
@@ -65,14 +66,15 @@ public class AlternativeService {
             }
         ArrayList<CriteriaPerAlternative> criteriaList = new ArrayList<>();
         double result;
-        for (Alternative alternative : newAlternatives) {
-            result = Collections.max(alternative.getScores());
-            criteriaList.add(new CriteriaPerAlternative(result, alternative));
+        for (int i = 0; i < newAlternatives.size() ; i++) {
+            result = Collections.max(newAlternatives.get(i).getScores());
+            criteriaList.add(new CriteriaPerAlternative(result, alternatives.get(i))); //getting previous alternative value
         }
         Collections.sort(criteriaList);
 
         return setRank(criteriaList);
     }
+
 
     public static ArrayList<RankedAlternative> countLaplasCriteria(final ArrayList<Alternative> alternatives) {
         ArrayList<CriteriaPerAlternative> criteriaList = new ArrayList<>();
@@ -97,5 +99,17 @@ public class AlternativeService {
         }
 
         return rankedAlternatives;
+    }
+
+    private static List<Alternative> cloneAlternatives(ArrayList<Alternative> alternatives) {
+        List<Alternative> clonedAlternativeList = new ArrayList<>();
+        for (Alternative alternative : alternatives)
+        {
+            Alternative clonedAlternative = new Alternative(alternative.getSerialNumber(),
+                    alternative.getName(),
+                    new ArrayList<Double>(alternative.getScores()));
+            clonedAlternativeList.add(clonedAlternative);
+        }
+        return clonedAlternativeList;
     }
 }
